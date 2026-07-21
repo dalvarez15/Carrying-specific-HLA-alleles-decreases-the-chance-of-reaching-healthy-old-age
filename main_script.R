@@ -28,7 +28,7 @@ library(corrplot)
 
 set.seed(1515)  # Fixed seed for reproducibility of the bootstrap-based CER calculation
 
-setwd("code_alvarezsirvent_npjaging")
+setwd("/path/to/repository/root")  # update to the local path of the repository root
 
 
 ## -----------------------------------------------------------------------------
@@ -85,7 +85,7 @@ colnames(all_regression)[colnames(all_regression) == "freq_total"] <- "freq_all"
 
 # UK Biobank PheWAS summary statistics (Butler-Laporte et al., 2024)
 # Sheet 20 contains HLA allele-disease associations
-ukbb_disease <- read.csv2("inputs/BUTLER-LAPORTE_2024_compressed.csv")
+ukbb_disease <- read_xlsx("inputs/BUTLER-LAPORTE_2024.xlsx", sheet = 20)
 
 # Alzheimer's disease GWAS summary statistics (Bellenguez et al., 2022)
 # Sheet 2 contains the relevant HLA allele associations
