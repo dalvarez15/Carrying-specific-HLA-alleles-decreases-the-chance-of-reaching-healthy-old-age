@@ -1,0 +1,17 @@
+name: r-hibag
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - r-base=4.3
+  - r-data.table
+  - r-tidyr
+  - r-dplyr
+  - r-stringr
+  - r-ggplot2
+  - r-readxl
+  - r-corrplot
+  - bioconductor-hibag
+  - bioconductor-liftover
+  - bioconductor-genomicranges
