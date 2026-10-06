@@ -5,12 +5,14 @@
 #SBATCH --cpus-per-task=8
 
 # =============================================================================
-# hla_imputation_job.sh — SLURM submission script for the HLA imputation pipeline
+# hla_imputation_job.sh: SLURM submission script for the HLA imputation pipeline
 #
 # Runs Steps 1–3 sequentially. Step 4 (regression and LD matrix) requires
 # additional input files (phenotype file, PC file, allele dosage table) and
 # is configured separately inside 4_compute_regression.R; submit it as a
-# second job once Steps 1–3 are complete.
+# second job once Steps 1–3 are complete, in the same environment.
+#
+# Requires plink (1.9) and plink2 on $PATH; see SOFTWARE.md.
 #
 # Edit the "Configuration" block below before submitting:
 #   sbatch hla_imputation_job.sh
@@ -26,6 +28,10 @@ MODEL_FILE="/path/to/InfiniumGlobal-European-HLA4-hg19.RData"  # HIBAG model
 # -----------------------------------------------------------------------------
 
 conda activate r-hibag
+
+# Check that both PLINK versions are available before starting
+command -v plink  >/dev/null 2>&1 || { echo "ERROR: plink (1.9) not found on \$PATH" >&2; exit 1; }
+command -v plink2 >/dev/null 2>&1 || { echo "ERROR: plink2 not found on \$PATH" >&2; exit 1; }
 
 mkdir -p "${OUTPUT_DIR}/imputed_HLA_alleles"
 
