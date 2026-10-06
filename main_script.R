@@ -84,8 +84,7 @@ colnames(all_regression)[colnames(all_regression) == "odds_ratio"] <- "ors"
 colnames(all_regression)[colnames(all_regression) == "freq_total"] <- "freq_all"
 
 # UK Biobank PheWAS summary statistics (Butler-Laporte et al., 2024)
-# Sheet 20 contains HLA allele-disease associations
-ukbb_disease <- read_xlsx("inputs/BUTLER-LAPORTE_2024.xlsx", sheet = 20)
+ukbb_disease <- read.csv2("inputs/BUTLER-LAPORTE_2024_compressed.csv")
 
 # Alzheimer's disease GWAS summary statistics (Bellenguez et al., 2022)
 # Sheet 2 contains the relevant HLA allele associations
