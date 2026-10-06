@@ -1,0 +1,11 @@
+# hla.ld is a PLINK LD matrix, not a linker script
+inputs/hla.ld linguist-detectable=false
+inputs/hla.ld linguist-language=Text
+
+# Generated data files
+inputs/hla.bim linguist-generated=true
+inputs/*.csv linguist-generated=true
+tables/*.csv linguist-generated=true
+tables/*.txt linguist-generated=true
+figures/*.pdf linguist-generated=true binary
+figures/*.pdf -diff

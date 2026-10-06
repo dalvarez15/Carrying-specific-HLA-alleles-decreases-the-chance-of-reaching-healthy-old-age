@@ -1,0 +1,38 @@
+# R
+.Rhistory
+.Rapp.history
+.RData
+.Rproj.user/
+*.Rproj
+.Renviron
+renv/library/
+renv/staging/
+renv/python/
+renv/sandbox/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Packed conda environments
+*.tar.gz
+envs/
+
+# Genotype data and PLINK intermediate files
+*.pgen
+*.pvar
+*.psam
+*.bed
+*.bim
+*.fam
+*.traw
+*.tfam
+
+# Allele identifiers used by main_script.R
+!inputs/hla.bim
+
+# Logs
+*.log
+*.err
