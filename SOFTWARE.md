@@ -8,7 +8,8 @@ This document covers all software needed to run the HLA imputation pipeline
 ## R environment
 
 The imputation pipeline was run using the conda environment defined in
-`environment.yml`. It includes R 4.3 and all required R packages.
+`environment.yml`. It includes R 4.3.3, HIBAG 1.38.0 and all R packages needed
+for the pipeline and for `main_script.R`.
 
 ### Recreating the environment (internet-connected machine)
 
@@ -73,8 +74,8 @@ Similarly, `plink2` is expected on `$PATH`.
 
 | Tool | Version | Build |
 |---|---|---|
-| PLINK 1.9 | v1.90b7.2 | 64-bit Linux |
-| PLINK 2 | v2.00a5.12 | 64-bit Linux (AVX2) |
+| PLINK 1.9 | v1.90b6.26 | 64-bit (2 Apr 2022) |
+| PLINK 2 | v2.00a3.3LM | 64-bit Intel (3 Jun 2022) |
 
 ---
 
@@ -88,7 +89,7 @@ in the conda environment (`bioconductor-hibag`).
 - Source: [https://github.com/zhengxwen/HIBAG](https://github.com/zhengxwen/HIBAG)
 - Bioconductor page: [https://bioconductor.org/packages/HIBAG/](https://bioconductor.org/packages/HIBAG/)
 
-HIBAG version used in this study: **2.0.1** (Bioconductor 3.18).
+HIBAG version used in this study: **1.38.0** (Bioconductor 3.18).
 
 ### Pre-fitted model
 
@@ -115,9 +116,6 @@ Decompress before use: `gunzip hg38ToHg19.over.chain.gz`
 
 ## Main analysis (`main_script.R`)
 
-`main_script.R` uses only standard CRAN/Bioconductor R packages and does not
-require PLINK or HIBAG. Install with:
-
-```r
-install.packages(c("readxl", "tidyr", "dplyr", "ggplot2", "corrplot", "data.table"))
-```
+`main_script.R` does not require PLINK or HIBAG. It runs in the same conda
+environment (`environment.yml`), which reproduces the figures and tables in
+this repository.

@@ -1,5 +1,5 @@
 ## =============================================================================
-## 1_make_input.R — Step 1: SNP extraction and PLINK2 → PLINK1 conversion
+## 1_make_input.R (Step 1): SNP extraction and PLINK2 to PLINK1 conversion
 ##
 ## Prepares chromosome 6 genotype data (PLINK2 pgen/pvar/psam) for HLA
 ## allele imputation. Fixes missing variant IDs (ID == "."), writes the
@@ -15,12 +15,12 @@
 ##   output_dir         : directory for all output files (created if absent)
 ##
 ## Output (in output_dir):
-##   chr6_hla_imputation.bed/.bim/.fam  — PLINK1 fileset for Step 2
-##   snps_hla_imputation.txt            — variant IDs passed to --extract
+##   chr6_hla_imputation.bed/.bim/.fam: PLINK1 fileset for Step 2
+##   snps_hla_imputation.txt: variant IDs passed to --extract
 ##
 ## Dependencies:
 ##   R packages : data.table
-##   System     : plink2
+##   System     : plink2 (--pfile input is not supported by plink 1.9)
 ## =============================================================================
 
 library(data.table)
@@ -69,13 +69,6 @@ system(paste0("mv ", pvar_tmp, " ", pvar_out))
 # Re-read to confirm
 data <- fread(pvar_out, showProgress = FALSE)
 cat("  Total variants:", nrow(data), "\n")
-
-# QC filters — disabled by default; uncomment to activate
-# Filter 1: imputation quality (R2 > 0.8 recommended for HIBAG)
-#   data$R2 <- as.numeric(sub(".*R2=([^;]+).*", "\\1", data$INFO))
-#   data <- data[data$R2 > 0.8, ]
-# Filter 2: restrict to HLA window on hg38 (chr6: 25–40 Mb)
-#   data <- data[data$POS > 25000000 & data$POS < 40000000, ]
 
 cat("** Variants selected for imputation:", nrow(data), "\n")
 

@@ -1,27 +1,27 @@
 ## =============================================================================
-## 4_compute_regression.R — Step 4: logistic regression and LD matrix
+## 4_compute_regression.R (Step 4): logistic regression and LD matrix
 ##
 ## Produces the three inputs consumed by main_script.R:
-##   inputs/regression_npj_aging_2025.csv  — per-allele logistic regression
-##                                           results (CHC vs. controls)
-##   inputs/hla.ld                         — pairwise r² matrix for HLA alleles
-##   inputs/hla.bim                        — allele identifiers (PLINK BIM format)
+##   inputs/regression_npj_aging_2025.csv: per-allele logistic regression
+##       results (CHC vs. controls)
+##   inputs/hla.ld: pairwise r² matrix for HLA alleles
+##   inputs/hla.bim: allele identifiers (PLINK BIM format)
 ##
 ## The script has two parts:
 ##
-##   PART 1 — REGRESSION
+##   PART 1: REGRESSION
 ##     Loads HIBAG imputation results (Step 3) for two genotyping batches,
 ##     merges with phenotype and PC files, builds per-sample allele dosages,
 ##     and runs six logistic regression models per allele:
-##       1. cent_ctr_original             — PCs only
-##       2. cent_ctr_sex_covariate        — PCs + sex
-##       3. cent_ctr_sex_interaction_main — PCs + sex*allele (main effect)
-##       4. cent_ctr_sex_interaction_term — PCs + sex*allele (interaction term)
-##       5. cent_ctr_female_only          — females only, PCs
-##       6. cent_ctr_male_only            — males only, PCs
+##       1. cent_ctr_original: PCs only
+##       2. cent_ctr_sex_covariate: PCs + sex
+##       3. cent_ctr_sex_interaction_main: PCs + sex*allele (main effect)
+##       4. cent_ctr_sex_interaction_term: PCs + sex*allele (interaction term)
+##       5. cent_ctr_female_only: females only, PCs
+##       6. cent_ctr_male_only: males only, PCs
 ##     Outcome: 1 = control, 0 = centenarian (CHC).
 ##
-##   PART 2 — LD MATRIX
+##   PART 2: LD MATRIX
 ##     Converts a wide allele dosage table to transposed PLINK dosage format
 ##     and calls plink2 / plink to compute a square r² matrix.
 ##
@@ -49,7 +49,7 @@
 ##
 ## Dependencies:
 ##   R packages : tidyr, dplyr, stringr, data.table
-##   System     : plink (v1), plink2
+##   System     : plink 1.9 and plink2 (see PART 2)
 ## =============================================================================
 
 library(tidyr)
@@ -58,7 +58,7 @@ library(stringr)
 library(data.table)
 
 ## -----------------------------------------------------------------------------
-## Configuration — set all paths here before running
+## Configuration: set all paths here before running
 ## -----------------------------------------------------------------------------
 
 # Batch 1: HIBAG result directory (result_A.txt, result_B.txt, etc.)
@@ -100,7 +100,7 @@ if (!dir.exists(output_dir)) dir.create(output_dir, recursive = TRUE)
 
 
 ## =============================================================================
-## PART 1 — REGRESSION
+## PART 1: REGRESSION
 ## =============================================================================
 
 ## -----------------------------------------------------------------------------
@@ -190,7 +190,7 @@ if (length(dup_100plus) > 0) {
 cat("  Unique samples after deduplication:", length(unique(imputed_hla_combined$ID_GWAS)), "\n")
 
 ## -----------------------------------------------------------------------------
-## Step 4: Quality filter — retain calls with prob >= 0.5
+## Step 4: Quality filter, retaining calls with prob >= 0.5
 ##
 ##   Posterior probability >= 0.5 is the standard HIBAG threshold
 ##   (Zheng et al. 2014, Pharmacogenomics J).
@@ -335,7 +335,7 @@ make_allele_row <- function(locus, allele, coef_res, freq, label) {
 }
 
 ## -----------------------------------------------------------------------------
-## Step 10: Logistic regression — six models per allele
+## Step 10: Logistic regression, six models per allele
 ##
 ##   Allele dosage is treated as a continuous additive predictor ("dummy").
 ##   PC1–5 correct for population stratification in all models.
@@ -406,12 +406,15 @@ cat("** Part 1 complete.\n\n")
 
 
 ## =============================================================================
-## PART 2 — LD MATRIX
+## PART 2: LD MATRIX
 ##
 ##   Converts the wide allele dosage table to transposed PLINK dosage format
 ##   (.traw / .tfam) and computes a square pairwise r² matrix.
 ##   Outputs hla.ld (r² matrix) and hla.bim (allele identifiers) are used
 ##   by main_script.R for Figure 3 (LD heatmap) and Figure 6.
+##
+##   plink2 is used for --import-dosage and the pgen to bed conversion,
+##   plink 1.9 for the square r² matrix (--r2 square).
 ## =============================================================================
 
 cat("** Starting Part 2: LD matrix computation...\n")

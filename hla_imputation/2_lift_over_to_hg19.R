@@ -1,5 +1,5 @@
 ## =============================================================================
-## 2_lift_over_to_hg19.R — Step 2: LiftOver from hg38 to hg19
+## 2_lift_over_to_hg19.R (Step 2): LiftOver from hg38 to hg19
 ##
 ## Translates variant coordinates in the PLINK1 BED fileset produced by
 ## Step 1 from GRCh38 to GRCh37 (hg19), which is required by the HIBAG
@@ -18,21 +18,22 @@
 ##   chain_file  : path to the UCSC hg38ToHg19.over.chain file
 ##
 ## Output (in file_dir):
-##   <prefix>_updated.bed/.bim/.fam          — hg19 BED fileset for Step 3
-##   <prefix>_hg19.bed/.bim/.fam             — intermediate post-extract
-##   <prefix>_failed_liftOver_snps.bim       — variants that could not be mapped
-##   <prefix>lifted_over_snps.txt            — IDs of successfully mapped variants
-##   <prefix>lifted_over_snps_set_for_update.txt — position table for plink
+##   <prefix>_updated.bed/.bim/.fam: hg19 BED fileset for Step 3
+##   <prefix>_hg19.bed/.bim/.fam: intermediate post-extract
+##   <prefix>_failed_liftOver_snps.bim: variants that could not be mapped
+##   <prefix>lifted_over_snps.txt: IDs of successfully mapped variants
+##   <prefix>lifted_over_snps_set_for_update.txt: position table for plink
 ##                                               --update-map / --update-cm
 ##
 ## Dependencies:
-##   R packages : data.table, liftOver (Bioconductor), GenomicRanges
-##   System     : plink (v1)
+##   R packages : data.table, rtracklayer and GenomicRanges (Bioconductor)
+##   System     : plink 1.9 (--update-map and --update-cm are not in plink2)
 ##   Data       : hg38ToHg19.over.chain (UCSC)
 ## =============================================================================
 
 library(data.table)
-library(liftOver)
+library(rtracklayer)     # import.chain(), liftOver()
+library(GenomicRanges)  # makeGRangesFromDataFrame()
 
 args <- commandArgs(trailingOnly = TRUE)
 if (length(args) < 3) stop("Usage: Rscript 2_lift_over_to_hg19.R <file_dir> <file_prefix> <chain_file>")
@@ -42,7 +43,7 @@ file            <- args[2]
 output_path     <- args[1]   # input and output share the same directory
 chain_file_path <- args[3]
 
-# Read BIM file (columns: chr, id, cm, pos, a1, a2 — no header)
+# Read BIM file (no header; columns: chr, id, cm, pos, a1, a2)
 cat("** Reading BIM file...\n")
 positions_hg38 <- fread(file.path(file_folder, paste0(file, ".bim")))
 colnames(positions_hg38) <- c("chr", "id", "cm", "pos", "a1", "a2")

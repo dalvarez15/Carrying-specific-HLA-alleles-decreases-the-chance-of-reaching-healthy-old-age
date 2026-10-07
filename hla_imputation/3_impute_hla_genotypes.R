@@ -1,5 +1,5 @@
 ## =============================================================================
-## 3_impute_hla_genotypes.R — Step 3: HIBAG HLA allele imputation
+## 3_impute_hla_genotypes.R (Step 3): HIBAG HLA allele imputation
 ##
 ## Imputes two-field HLA alleles at seven classical loci (A, B, C, DRB1,
 ## DQB1, DQA1, DPB1) using HIBAG and a pre-fitted European-ancestry
@@ -20,9 +20,9 @@
 ##   output_dir   : directory for result and summary files (must exist)
 ##
 ## Output (in output_dir), one pair of files per locus:
-##   result_<LOCUS>.txt  — per-sample allele calls and posterior probabilities
+##   result_<LOCUS>.txt: per-sample allele calls and posterior probabilities
 ##                          columns: sample.id, allele1, allele2, prob
-##   summary_<LOCUS>.txt — imputation quality summary (per-allele accuracy)
+##   summary_<LOCUS>.txt: imputation quality summary (per-allele accuracy)
 ##
 ## Note: calls with posterior probability < 0.5 are excluded in Step 4
 ## (4_compute_regression.R), as recommended by HIBAG (Zheng et al. 2014).

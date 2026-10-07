@@ -1,0 +1,63 @@
+{
+  "title": "Code for: Carrying specific HLA alleles decreases the chance of reaching healthy old age",
+  "upload_type": "software",
+  "description": "<p>Analysis code for the article <em>Carrying specific HLA alleles decreases the chance of reaching healthy old age</em> (npj Aging, 2026). The repository contains the HLA imputation pipeline (HIBAG), the per-allele regression and linkage disequilibrium computation, and the script that produces the figures and tables of the article.</p>",
+  "creators": [
+    {
+      "name": "Álvarez Sirvent, D."
+    },
+    {
+      "name": "Tesi, N."
+    },
+    {
+      "name": "Hulsman, M."
+    },
+    {
+      "name": "Salazar, A. N."
+    },
+    {
+      "name": "van Schoor, N. M."
+    },
+    {
+      "name": "Huisman, M."
+    },
+    {
+      "name": "Pijnenburg, Y."
+    },
+    {
+      "name": "van der Flier, W. M."
+    },
+    {
+      "name": "Strijbis, E. M. M."
+    },
+    {
+      "name": "Uitdehaag, B. M. J."
+    },
+    {
+      "name": "Reinders, M. J. T."
+    },
+    {
+      "name": "van der Lee, S."
+    },
+    {
+      "name": "Holstege, H."
+    }
+  ],
+  "license": "mit",
+  "access_right": "open",
+  "keywords": [
+    "HLA",
+    "HIBAG",
+    "healthy ageing",
+    "centenarians",
+    "Alzheimer's disease"
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "10.1038/s41514-026-00445-y",
+      "scheme": "doi",
+      "resource_type": "publication-article"
+    }
+  ]
+}
