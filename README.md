@@ -142,6 +142,12 @@ Runs in the same conda environment as the pipeline (`environment.yml`); see [`SO
 
 ---
 
+## Archival
+
+A permanent copy of this code is archived on Zenodo: [doi:10.5281/zenodo.23215455](https://doi.org/10.5281/zenodo.23215455). This DOI always resolves to the latest release.
+
+---
+
 ## License
 
 Released under the [MIT License](LICENSE).

@@ -7,6 +7,8 @@ authors:
     orcid: "https://orcid.org/0000-0002-4180-5660"
     affiliation: "Genomics of Neurodegenerative Diseases and Aging, Human Genetics, Vrije Universiteit Amsterdam, Amsterdam UMC location VUmc, Amsterdam, The Netherlands"
 version: "1.0.0"
+doi: "10.5281/zenodo.23215455"
+date-released: "2026-10-07"
 repository-code: "https://github.com/dalvarez15/Carrying-specific-HLA-alleles-decreases-the-chance-of-reaching-healthy-old-age"
 license: MIT
 preferred-citation:
