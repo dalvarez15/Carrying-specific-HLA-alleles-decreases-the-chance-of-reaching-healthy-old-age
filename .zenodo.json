@@ -4,43 +4,9 @@
   "description": "<p>Analysis code for the article <em>Carrying specific HLA alleles decreases the chance of reaching healthy old age</em> (npj Aging, 2026). The repository contains the HLA imputation pipeline (HIBAG), the per-allele regression and linkage disequilibrium computation, and the script that produces the figures and tables of the article.</p>",
   "creators": [
     {
-      "name": "Álvarez Sirvent, D."
-    },
-    {
-      "name": "Tesi, N."
-    },
-    {
-      "name": "Hulsman, M."
-    },
-    {
-      "name": "Salazar, A. N."
-    },
-    {
-      "name": "van Schoor, N. M."
-    },
-    {
-      "name": "Huisman, M."
-    },
-    {
-      "name": "Pijnenburg, Y."
-    },
-    {
-      "name": "van der Flier, W. M."
-    },
-    {
-      "name": "Strijbis, E. M. M."
-    },
-    {
-      "name": "Uitdehaag, B. M. J."
-    },
-    {
-      "name": "Reinders, M. J. T."
-    },
-    {
-      "name": "van der Lee, S."
-    },
-    {
-      "name": "Holstege, H."
+      "name": "Álvarez Sirvent, Daniel",
+      "affiliation": "Genomics of Neurodegenerative Diseases and Aging, Human Genetics, Vrije Universiteit Amsterdam, Amsterdam UMC location VUmc, Amsterdam, The Netherlands",
+      "orcid": "0000-0002-4180-5660"
     }
   ],
   "license": "mit",
